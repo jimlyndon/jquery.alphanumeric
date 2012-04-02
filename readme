@@ -1,0 +1,11 @@
+Fork of a fork of jquery.alphanumeric   :)
+
+Expanded to allow for:
+
+1. optional whitelist of allowed characters
+2. optional flag to only allow one decimal in a field
+3. optional flag to only allow one negative in a field, and only at first position
+4. optional flag to allow pasting from ctrl+v or context menu (mouse) or drag, while maintaining filter.
+
+Usage ex:
+$('input').numeric({ decimal: true, negative: true, allowPaste: true, whiteList: true, allow: ','});
