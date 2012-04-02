@@ -154,7 +154,15 @@
 				    if (p.decimal && p.allow.indexOf('.') == -1) p.allow = p.allow + '.';
 
 				    // optionally build up and use whitelist of allowed characters
-				    if (p.whiteList) p.wchars += p.allow;
+				    if (p.whiteList) {
+                        if(!p.wchars) {
+                            if (p.nocaps) p.wchars += "abcdefghijklmnopqrstuvwxyz";
+				            if (p.allcaps) p.wchars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+				            if (!p.wchars) p.wchars += "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+                            p.wchars += "0123456789";
+                        }
+                        p.wchars += p.allow;
+                    }
 				    var wl = p.wchars;
 
 				    // regex to remove from blacklist characters that have been explicitly allowed
