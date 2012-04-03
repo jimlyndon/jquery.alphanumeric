@@ -41,20 +41,22 @@
                     if (o.createTextRange) {
                         var r = o.createTextRange();
                         r.collapse(true);
-
                         //IE Fix. If start = end, we must use move instead.
-                        if(p[0] === p[1])
-                            r.move('character', p[0]);
+                        if(p[0] === p[1]) {
+                            if(p[0] == 0)                                
+                                r.moveEnd('character', o.value.length);
+                            else
+                                r.move('character', p[0]);
+                        }
                         else {
                             r.moveStart('character', p[0]);
-                            r.moveEnd('character', p[1]);
+                            r.moveEnd('character', o.value.length);
                         }
-
                         r.select();
                     }
                     else if (o.setSelectionRange) {
                         o.focus();
-                        o.setSelectionRange(p[0], p[1]);
+                        o.setSelectionRange(p[0], o.value.length);
                     }
                 }
             } catch(e) {}
